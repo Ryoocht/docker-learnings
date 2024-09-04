@@ -1,5 +1,11 @@
 version: "3"
 services:
+  # name of ECR image
+  my-app:
+    # name of image in ECR
+    image: 664574038682.dkr.ecr.eu-central-1.amazonaws.com/my-app:1.0 # domain name/image name/tag
+    ports:
+      - 3000:3000
   mongodb:
     image: mongo
     ports:
@@ -8,7 +14,7 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=password
     volumes:
-      - mongo-data:/data/db
+      - mongo-data:/data/db # Named Volumes (anonymous path but with name)
   mongo-express:
     image: mongo-express
     restart: always
